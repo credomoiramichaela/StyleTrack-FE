@@ -1,0 +1,12 @@
+# Add under `services:` in the backend's docker-compose.yml.
+# Assumes this folder sits next to the backend folder: ./styletrack and ./styletrack-web
+  web:
+    build: ../styletrack-web
+    container_name: styletrack-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    environment:
+      API_UPSTREAM: http://api:8080
+    ports:
+      - "3000:80"
